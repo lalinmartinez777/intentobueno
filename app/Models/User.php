@@ -45,4 +45,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Relación Muchos a Muchos: Un estudiante puede inscribirse en muchas clases.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function clasesInscritas()
+    {
+        return $this->belongsToMany(Clase::class, 'clase_estudiante', 'user_id', 'clase_id');
+    }
 }
